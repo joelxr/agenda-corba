@@ -1,0 +1,33 @@
+module agenda {
+
+   struct Contact {
+      string name;
+      string phoneNumber;
+   };
+
+   typedef sequence <Contact> Contacts;
+
+   typedef sequence <string> Agendas;
+
+   exception ContactAlreadyExists {
+      string name;
+   };
+
+   interface Agenda {
+      void addContact (in Contact contact) raises (ContactAlreadyExists);
+
+      void updateContact(in Contact contact);
+
+      void deleteContact(in Contact contact);
+
+      Contacts getContacts ();
+
+      string getName();
+
+      void start();
+
+      void syncContact(in Contact contact, in Agendas agendas, in string action);
+
+      void addNearbyAgenda(in string name);
+   };
+};
